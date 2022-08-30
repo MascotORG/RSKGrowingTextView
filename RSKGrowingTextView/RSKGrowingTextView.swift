@@ -69,10 +69,14 @@ public typealias HeightChangeUserActionsBlockType = ((_ oldHeight: CGFloat, _ ne
             
             height = ceil(calculationLayoutManager.usedRect(for: calculationTextContainer).height + contentInset.top + contentInset.bottom + textContainerInset.top + textContainerInset.bottom)
             
+            if height < maxHeight {
+                self.isScrollEnabled = false
+            }
             if height < minHeight {
                 height = minHeight
             } else if height > maxHeight {
                 height = maxHeight
+                self.isScrollEnabled = true
             }
         } else {
             height = minHeight
